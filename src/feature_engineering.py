@@ -44,7 +44,7 @@ def build_features(df):
     feats["b_eff_ratio"] = b_eff_ratio
     feats["delta_eff_ratio"] = a_eff_ratio - b_eff_ratio
 
-    # points per possession offense and defense
+    # points per possession
     feats["a_pppo"] = _safe(df, "A_PPPO")
     feats["b_pppo"] = _safe(df, "B_PPPO")
     feats["a_pppd"] = _safe(df, "A_PPPD")
@@ -52,7 +52,7 @@ def build_features(df):
     feats["delta_pppo"] = _safe(df, "A_PPPO") - _safe(df, "B_PPPO")
     feats["delta_pppd"] = _safe(df, "A_PPPD") - _safe(df, "B_PPPD")
 
-    # four factors - all as deltas
+    # four factors
     feats["delta_efg_off"] = _safe(df, "A_EFG%") - _safe(df, "B_EFG%")
     feats["delta_efg_def"] = _safe(df, "A_EFG%D") - _safe(df, "B_EFG%D")
     feats["delta_tov_off"] = _safe(df, "A_TOV%") - _safe(df, "B_TOV%")
@@ -65,7 +65,7 @@ def build_features(df):
     feats["b_ft_pct"] = _safe(df, "B_FT%")
     feats["delta_ft_pct"] = _safe(df, "A_FT%") - _safe(df, "B_FT%")
 
-    # shooting profile deltas
+    # shooting profile
     feats["delta_3pt_rate"] = _safe(df, "A_3PTR") - _safe(df, "B_3PTR")
     feats["delta_3pt_rate_def"] = _safe(df, "A_3PTRD") - _safe(df, "B_3PTRD")
     feats["delta_3pt_pct"] = _safe(df, "A_3PT%") - _safe(df, "B_3PT%")
@@ -73,23 +73,18 @@ def build_features(df):
     feats["delta_2pt_pct"] = _safe(df, "A_2PT%") - _safe(df, "B_2PT%")
     feats["delta_2pt_pct_def"] = _safe(df, "A_2PT%D") - _safe(df, "B_2PT%D")
     feats["delta_2pt_rate"] = _safe(df, "A_2PTR") - _safe(df, "B_2PTR")
-
-    # true shooting proxy: PPPO as numerator proxy; using EFG delta as TS proxy
     feats["delta_ts_proxy"] = feats["delta_efg_off"]
 
-    # mid-range attempt rate proxy: remaining shots not at rim and not threes
-    # approximate as (1 - 3PTR - close_twos_share) per team
     a_mid = 1.0 - _safe(df, "A_3PTR", 0) / 100.0 - _safe(df, "A_CLOSE TWOS SHARE", 0) / 100.0
     b_mid = 1.0 - _safe(df, "B_3PTR", 0) / 100.0 - _safe(df, "B_CLOSE TWOS SHARE", 0) / 100.0
     feats["a_mid_rate"] = a_mid
     feats["b_mid_rate"] = b_mid
     feats["delta_mid_rate"] = a_mid - b_mid
 
-    # tempo and style features
+    # tempo
     feats["delta_tempo"] = _safe(df, "A_KADJ T") - _safe(df, "B_KADJ T")
     feats["abs_tempo_diff"] = (_safe(df, "A_KADJ T") - _safe(df, "B_KADJ T")).abs()
-
-    # pace classification: slow < 65, fast > 70, medium otherwise (one-hot)
+    # pace classification
     for prefix in ["a", "b"]:
         col = "A_KADJ T" if prefix == "a" else "B_KADJ T"
         tempo = _safe(df, col)
@@ -100,19 +95,16 @@ def build_features(df):
     feats["delta_ast_rate"] = _safe(df, "A_AST%") - _safe(df, "B_AST%")
     feats["delta_blk_rate"] = _safe(df, "A_BLK%") - _safe(df, "B_BLK%")
 
-    # turnover-to-assist ratio per team then delta
     a_toa = _safe(df, "A_TOV%") / _safe(df, "A_AST%").replace(0, np.nan)
     b_toa = _safe(df, "B_TOV%") / _safe(df, "B_AST%").replace(0, np.nan)
     feats["delta_toa_ratio"] = a_toa - b_toa
 
-    # strength of schedule and context
+    # SOS and context
     feats["delta_elite_sos"] = _safe(df, "A_ELITE SOS") - _safe(df, "B_ELITE SOS")
     feats["delta_wab"] = _safe(df, "A_WAB") - _safe(df, "B_WAB")
     feats["delta_q1_wins"] = _safe(df, "A_Q1_W") - _safe(df, "B_Q1_W")
     feats["delta_q1q2_wins"] = _safe(df, "A_Q1Q2_W") - _safe(df, "B_Q1Q2_W")
     feats["delta_conf_avg_adjem"] = _safe(df, "A_CONF_AVG_ADJEM") - _safe(df, "B_CONF_AVG_ADJEM")
-
-    # resume scores
     feats["delta_resume"] = _safe(df, "A_RESUME") - _safe(df, "B_RESUME")
     feats["delta_elo"] = _safe(df, "A_ELO") - _safe(df, "B_ELO")
 
@@ -130,11 +122,9 @@ def build_features(df):
     feats["b_blue_blood"] = _safe(df, "B_BLUE_BLOOD", 0).fillna(0)
     feats["delta_blue_blood"] = feats["a_blue_blood"] - feats["b_blue_blood"]
 
-    # EvanMiya ratings
+    # EvanMiya and Z ratings
     feats["delta_em_rating"] = _safe(df, "A_EM_RATING") - _safe(df, "B_EM_RATING")
     feats["delta_em_killshots"] = _safe(df, "A_EM_KILLSHOTS") - _safe(df, "B_EM_KILLSHOTS")
-
-    # Z rating
     feats["delta_z_rating"] = _safe(df, "A_Z_RATING") - _safe(df, "B_Z_RATING")
 
     # height and experience
@@ -142,9 +132,7 @@ def build_features(df):
     feats["delta_eff_hgt"] = _safe(df, "A_EFF HGT") - _safe(df, "B_EFF HGT")
     feats["delta_exp"] = _safe(df, "A_EXP") - _safe(df, "B_EXP")
     feats["delta_talent"] = _safe(df, "A_TALENT") - _safe(df, "B_TALENT")
-
-    # composite derived features
-    # balanced profile score: reward top-30 in both AdjO and AdjD
+    # composite features
     a_balanced = ((_safe(df, "A_KADJ O RANK") <= 30).astype(int) +
                   (_safe(df, "A_KADJ D RANK") <= 30).astype(int))
     b_balanced = ((_safe(df, "B_KADJ O RANK") <= 30).astype(int) +
@@ -153,12 +141,10 @@ def build_features(df):
     feats["b_balanced_profile"] = b_balanced
     feats["delta_balanced_profile"] = a_balanced - b_balanced
 
-    # efficiency ratio again (Barttorvik version)
     a_bart_ratio = _safe(df, "A_BADJ O") / _safe(df, "A_BADJ D").replace(0, np.nan)
     b_bart_ratio = _safe(df, "B_BADJ O") / _safe(df, "B_BADJ D").replace(0, np.nan)
     feats["delta_bart_eff_ratio"] = a_bart_ratio - b_bart_ratio
 
-    # trapezoid of excellence: AdjEM > 25 and AdjT between 64 and 72
     a_trap = ((_safe(df, "A_KADJ EM") > 25) &
               (_safe(df, "A_KADJ T") >= 64) &
               (_safe(df, "A_KADJ T") <= 72)).astype(int)
@@ -169,7 +155,6 @@ def build_features(df):
     feats["b_trapezoid"] = b_trap
     feats["delta_trapezoid"] = a_trap - b_trap
 
-    # tournament readiness index: combine elite SOS, WAB, Q1 wins, EXP, normalized to 0-1
     def _norm(s):
         mn, mx = s.min(), s.max()
         if mx == mn:
@@ -191,11 +176,8 @@ def build_features(df):
     feats["a_tourney_readiness"] = a_readiness
     feats["b_tourney_readiness"] = b_readiness
     feats["delta_tourney_readiness"] = a_readiness - b_readiness
-
-    # tempo mismatch index
     feats["tempo_mismatch"] = (_safe(df, "A_KADJ T") - _safe(df, "B_KADJ T")).abs()
 
-    # upset propensity: non-power conf team with AdjEM in top 40 and seed >= 10
     power_confs = {"SEC", "B12", "B10", "ACC", "BE", "P12"}
     a_upset_flag = (
         (~_safe(df, "A_CONF").isin(power_confs)) &
@@ -210,22 +192,49 @@ def build_features(df):
     feats["a_upset_propensity"] = a_upset_flag
     feats["b_upset_propensity"] = b_upset_flag
 
-    # defensive vs offensive style compatibility
-    # flag when team A's defense (EFG%D) is strong against team B's offense (EFG%)
     feats["defense_offense_edge_a"] = (
         _safe(df, "B_EFG%") - _safe(df, "A_EFG%D")
     )
     feats["defense_offense_edge_b"] = (
         _safe(df, "A_EFG%") - _safe(df, "B_EFG%D")
     )
-
-    # barttorvik adjusted EM delta (primary predictor)
     feats["delta_badj_em_nt"] = _safe(df, "A_NT_BADJ_EM") - _safe(df, "B_NT_BADJ_EM")
-
-    # win percentage features
     feats["delta_win_pct"] = _safe(df, "A_WIN%") - _safe(df, "B_WIN%")
     feats["a_win_pct"] = _safe(df, "A_WIN%")
     feats["b_win_pct"] = _safe(df, "B_WIN%")
+
+    # --- upset-tuned features ---
+    abs_em_gap = (_safe(df, "A_BADJ EM") - _safe(df, "B_BADJ EM")).abs()
+    feats["abs_em_gap"] = abs_em_gap
+    feats["is_tossup"] = (abs_em_gap < 5).astype(float)
+
+    feats["delta_ps_em_change"] = _safe(df, "A_PS_EM_CHANGE") - _safe(df, "B_PS_EM_CHANGE")
+    feats["delta_ps_rank_change"] = _safe(df, "A_PS_RANK_CHANGE") - _safe(df, "B_PS_RANK_CHANGE")
+    a_peaking = (_safe(df, "A_PS_RANK_CHANGE") >= 10).astype(float)
+    b_peaking = (_safe(df, "B_PS_RANK_CHANGE") >= 10).astype(float)
+    feats["delta_peaking"] = a_peaking - b_peaking
+
+    feats["delta_ap_rank_final"] = _safe(df, "A_AP_RANK_FINAL") - _safe(df, "B_AP_RANK_FINAL")
+    feats["a_is_ranked"] = (_safe(df, "A_AP_RANK_FINAL") < 26).astype(float)
+    feats["b_is_ranked"] = (_safe(df, "B_AP_RANK_FINAL") < 26).astype(float)
+    feats["delta_ranked"] = feats["a_is_ranked"] - feats["b_is_ranked"]
+
+    a_3pt_vol = _safe(df, "A_3PTR", 0) * (1.0 - _safe(df, "A_3PT%", 0.33))
+    b_3pt_vol = _safe(df, "B_3PTR", 0) * (1.0 - _safe(df, "B_3PT%", 0.33))
+    feats["a_3pt_volatility"] = a_3pt_vol
+    feats["b_3pt_volatility"] = b_3pt_vol
+    feats["delta_3pt_volatility"] = a_3pt_vol - b_3pt_vol
+
+    avg_tempo = (_safe(df, "A_KADJ T") + _safe(df, "B_KADJ T")) / 2.0
+    a_pace_ctrl = (_safe(df, "A_KADJ T") - avg_tempo).abs()
+    b_pace_ctrl = (_safe(df, "B_KADJ T") - avg_tempo).abs()
+    feats["pace_control_edge"] = b_pace_ctrl - a_pace_ctrl
+
+    feats["delta_ft_clutch"] = _safe(df, "A_FT%") - _safe(df, "B_FT%")
+    feats["delta_recent_hist"] = (
+        _safe(df, "A_HIST_WIN_RATE") * _safe(df, "A_HIST_S16_RATE") -
+        _safe(df, "B_HIST_WIN_RATE") * _safe(df, "B_HIST_S16_RATE")
+    )
 
     return feats
 
@@ -235,7 +244,6 @@ def run_rfe(feature_matrix, target, cv_folds=5, n_jobs=-1, random_state=42):
     run recursive feature elimination with cross-validation to find optimal feature subset.
     returns the selected feature names and the fitted RFECV object.
     """
-    # drop rows with any NaN in feature matrix or target
     valid_mask = feature_matrix.notna().all(axis=1) & target.notna()
     X = feature_matrix[valid_mask].values
     y = target[valid_mask].values
@@ -260,11 +268,8 @@ def prepare_training_data(matchup_df):
     """
     feature_df = build_features(matchup_df)
     target = matchup_df["TEAM_A_WIN"].astype(int)
-
-    # align indices
     feature_df = feature_df.reset_index(drop=True)
     target = target.reset_index(drop=True)
-
     return feature_df, target
 
 
