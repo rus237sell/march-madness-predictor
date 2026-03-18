@@ -95,12 +95,34 @@ def load_heat_check():
     return df
 
 
-def load_tournament_simulation():
-    df = pd.read_csv(_raw("Tournament Simulation.csv"))
+def load_kenpom_preseason():
+    df = pd.read_csv(_raw("KenPom Preseason.csv"))
     df.columns = df.columns.str.strip()
     return df
 
 
+def load_ap_poll():
+    df = pd.read_csv(_raw("AP Poll Data.csv"))
+    df.columns = df.columns.str.strip()
+    return df
+
+
+def load_upset_seed_info():
+    df = pd.read_csv(_raw("Upset Seed Info.csv"))
+    df.columns = df.columns.str.strip()
+    return df
+
+
+def load_seed_results():
+    df = pd.read_csv(_raw("Seed Results.csv"))
+    df.columns = df.columns.str.strip()
+    return df
+
+
+def load_tournament_simulation():
+    df = pd.read_csv(_raw("Tournament Simulation.csv"))
+    df.columns = df.columns.str.strip()
+    return df
 def _build_game_pairs(matchups):
     # each game is represented by two consecutive rows sharing a CURRENT ROUND
     # within the same year; pairs are formed by sorting on BY YEAR NO descending
@@ -152,6 +174,35 @@ def _build_game_pairs(matchups):
         else:
             i += 1
     return pd.DataFrame(rows)
+def _add_preseason_trajectory(stats, preseason):
+    """
+    Merges KenPom preseason vs. end-of-season AdjEM rank change as a momentum signal.
+    Positive KADJ EM RANK CHANGE means the team improved more than expected from preseason.
+    """
+    ps = preseason[["YEAR", "TEAM NO", "KADJ EM RANK CHANGE", "KADJ EM CHANGE", "PRESEASON KADJ EM"]].copy()
+    ps = ps.rename(columns={
+        "KADJ EM RANK CHANGE": "PS_RANK_CHANGE",
+        "KADJ EM CHANGE": "PS_EM_CHANGE",
+        "PRESEASON KADJ EM": "PS_EM",
+    })
+    stats = stats.merge(ps, on=["YEAR", "TEAM NO"], how="left")
+    return stats
+
+
+def _add_ap_momentum(stats, ap_poll):
+    """
+    Derives an end-of-season AP rank as a proxy for voter/market confidence.
+    Uses the final pre-tournament AP week available per team/year.
+    Unranked teams get AP_RANK = 26 (just outside top 25).
+    """
+    ap = ap_poll.copy()
+    # keep only the latest week per team per year
+    ap = ap.sort_values("WEEK").groupby(["YEAR", "TEAM NO"]).last().reset_index()
+    ap["AP_RANK_FINAL"] = ap["AP RANK"].fillna(26).clip(upper=26).astype(float)
+    ap = ap[["YEAR", "TEAM NO", "AP_RANK_FINAL"]]
+    stats = stats.merge(ap, on=["YEAR", "TEAM NO"], how="left")
+    stats["AP_RANK_FINAL"] = stats["AP_RANK_FINAL"].fillna(26)
+    return stats
 
 
 def _build_team_stats(kb, resumes, shooting, teamsheet, neutral, evan, z_rat, conf_stats, rppf):
@@ -219,8 +270,6 @@ def _build_team_stats(kb, resumes, shooting, teamsheet, neutral, evan, z_rat, co
             stats = stats.merge(rppf[r_cols], on=["YEAR", "TEAM NO"], how="left")
 
     return stats
-
-
 def _add_historical_program_features(stats, team_results):
     # compute historical program tournament win rate and advancement rates since 2003
     tr = team_results.copy()
@@ -267,10 +316,14 @@ def build_team_stats():
     conf_stats = load_conference_stats()
     team_results = load_team_results()
     rppf = load_rppf_ratings()
+    preseason = load_kenpom_preseason()
+    ap_poll = load_ap_poll()
 
     stats = _build_team_stats(kb, resumes, shooting, teamsheet, neutral, evan, z_rat, conf_stats, rppf)
     stats = _add_historical_program_features(stats, team_results)
     stats = _add_conference_features(stats, conf_stats)
+    stats = _add_preseason_trajectory(stats, preseason)
+    stats = _add_ap_momentum(stats, ap_poll)
 
     os.makedirs(DATA_PROCESSED, exist_ok=True)
     stats.to_csv(os.path.join(DATA_PROCESSED, "team_stats.csv"), index=False)
