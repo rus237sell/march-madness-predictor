@@ -19,10 +19,13 @@ march-madness-predictor/
     feature_engineering.py compute matchup-level features and run RFE
     model.py               train and evaluate all models
     simulate_bracket.py    run Monte Carlo bracket simulation
+    predict_score.py       championship game total score predictor
+    predict_ot.py          Kristin's Challenge — OT game predictor
   predictions/
     bracket_2026.csv
     championship_odds_2026.csv
     feature_importance_2026.png
+    kristins_challenge_2026.json
   requirements.txt
   README.md
 ```
@@ -41,7 +44,8 @@ march-madness-predictor/
 - **Team Results** (`Team Results.csv`): historical program tournament win rate, S16/F4/championship rates
 - **Coach Results** (`Coach Results.csv`): career tournament win rate, Final Four appearances per coach
 - **Tournament Simulation** (`Tournament Simulation.csv`): current year bracket structure for simulation
-
+- **KenPom Preseason** (`KenPom Preseason.csv`): preseason AdjEM and rank per team per year, used to compute trajectory (how much a team improved from preseason to tournament)
+- **AP Poll** (`AP Poll.csv`): weekly AP top-25 rankings per team per year, used to compute final pre-tournament AP rank as a momentum signal
 ## Feature Engineering
 
 Features are computed at the matchup level. Continuous stats are expressed as the delta between Team A and Team B unless the feature is team-specific. Key feature categories:
@@ -54,8 +58,19 @@ Features are computed at the matchup level. Continuous stats are expressed as th
 - Program history: tournament win rate, S16 rate, F4 rate, blue blood indicator
 - Composite: balanced profile score, trapezoid of excellence flag, tournament readiness index
 - Seed features: seed difference, seed ratio
+- **Upset and toss-up signals** (added for improved close-game accuracy):
+  - `abs_em_gap` / `is_tossup`: absolute efficiency margin gap and a binary flag for games within 5 points (true toss-ups)
+  - `delta_ps_em_change` / `delta_ps_rank_change`: difference in KenPom preseason trajectory between teams — peaking teams tend to outperform expectations
+  - `delta_peaking`: binary momentum flag for teams that improved 10+ spots from preseason to tournament
+  - `delta_ap_rank_final` / `delta_ranked`: final AP rank differential and whether each team was ranked at all — captures national recognition and momentum
+  - `delta_3pt_volatility`: three-point attempt rate x (1 - three-point percentage) — high volatility teams swing more in unpredictable games
+  - `pace_control_edge`: which team is better equipped to control game tempo — slow-paced teams can neutralize faster, higher-efficiency opponents
+  - `delta_ft_clutch`: free throw percentage differential — better FT shooting matters most in close late-game situations
+  - `delta_recent_hist`: weighted combination of historical tournament win rate and Sweet 16 rate — program experience in high-pressure moments
 
-Recursive Feature Elimination with 5-fold cross-validation identifies the optimal subset before final model training.
+Recursive Feature Elimination with 5-fold cross-validation identifies the optimal subset before final model training. The current selected feature set contains 33 features (up from the original 24).
+
+With the expanded feature set, the model shows meaningful improvement in the areas that matter most for bracket accuracy: upset recall improved from 55% to 58.3%, close-game accuracy (games within 10 efficiency margin) improved from 63% to 70%, and overall Brier score improved from 0.1390 to 0.1358. The new features help specifically in toss-up matchups without affecting the model's confidence on clear favorites.
 
 ## Models
 
@@ -69,6 +84,50 @@ Recursive Feature Elimination with 5-fold cross-validation identifies the optima
 
 Models are trained on years 2008-2023 excluding the held-out evaluation years 2019, 2022, and 2023.
 
+## Championship Score Prediction
+
+`src/predict_score.py` predicts the total combined points in the championship game using a tempo-adjusted efficiency formula ensembled across both Barttorvik and KenPom rating systems.
+
+```
+TeamA_pts = (TeamA_AdjO / 100) x (TeamB_AdjD / 100) x possessions
+TeamB_pts = (TeamB_AdjO / 100) x (TeamA_AdjD / 100) x possessions
+possessions = average tempo of both teams
+```
+
+A 4.5% tournament adjustment is applied to account for elevated defensive intensity in late-round games. For 2026, the predicted championship total is **155 points** (Florida vs Arizona).
+
+```bash
+python src/predict_score.py Florida Arizona 2026
+```
+
+## Kristin's Challenge — OT Game Prediction
+
+`src/predict_ot.py` predicts the number of overtime games in the Round of 64 (Thursday + Friday games) for a given tournament year.
+
+**Methodology:** A logistic regression model is trained on 17 years of historical Round of 64 games using the following features per matchup:
+
+- `abs_em_diff`: absolute efficiency margin gap between the two teams — tighter matchups are more likely to go to OT
+- `avg_tempo`: average pace of both teams — slower-paced games have less scoring variance
+- `seed_diff_abs`: absolute seed difference — evenly seeded games are more likely to be close
+- `ft_pct_avg`: average free throw percentage — better FT shooting is critical in OT situations
+- `ps_change_avg`: average KenPom preseason trajectory — both teams peaking into the tournament creates more tightly contested games
+- `both_ranked`: whether both teams were in the AP top 25 — ranked matchups tend to be more competitive
+- `avg_3pt_volatility`: three-point rate x miss rate — high-variance shooting teams produce more chaotic late-game situations
+
+The model uses isotonic calibration (CalibratedClassifierCV) to anchor predicted probabilities to the historical OT base rate of 4.79%. Summing P(OT) across all 32 games gives the expected number of OT games.
+
+**2026 Prediction:**
+- Expected OT games: **1.25**
+- Predicted OT games: **1**
+- Historical average: ~1.4 OT games per Round of 64
+
+Top OT candidates: Utah St. vs Villanova (6.7%), Missouri vs Miami FL (6.7%), Santa Clara vs Kentucky (5.8%)
+
+```bash
+python src/predict_ot.py 2026
+```
+
+Results saved to `predictions/kristins_challenge_2026.json`.
 ## Running the Pipeline
 
 Install dependencies:
@@ -85,6 +144,16 @@ python src/model.py
 Run bracket simulation for the current year:
 ```bash
 python src/simulate_bracket.py --year 2026 --sims 10000
+```
+
+Predict championship game total:
+```bash
+python src/predict_score.py Florida Arizona 2026
+```
+
+Predict Round of 64 OT games (Kristin's Challenge):
+```bash
+python src/predict_ot.py 2026
 ```
 
 Or use the notebooks in order:
@@ -220,6 +289,7 @@ FINAL FOUR
 
 CHAMPIONSHIP
   Florida  (47.9% Monte Carlo win probability)
+  Predicted total: 155 points
 ```
 
 ## 2026 Championship Odds (10,000 Monte Carlo Simulations)
@@ -244,3 +314,4 @@ CHAMPIONSHIP
 - `predictions/championship_odds_2026.csv` — each team's championship probability from Monte Carlo simulations
 - `predictions/feature_importance_2026.png` — Random Forest feature importance chart
 - `predictions/model_eval_summary.json` — cross-validation and held-out year evaluation metrics per model
+- `predictions/kristins_challenge_2026.json` — per-game OT probabilities and expected OT count for 2026 Round of 64
