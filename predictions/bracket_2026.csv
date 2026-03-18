@@ -1,0 +1,55 @@
+Round,Team_A,Team_B,Team_A_win_prob,Predicted_Winner
+Round of 64,(1) Duke,(16) Siena,0.8747,Duke
+Round of 64,(8) Ohio St.,(9) TCU,0.905,Ohio St.
+Round of 64,(5) St. John's,(12) Northern Iowa,0.5036,St. John's
+Round of 64,(4) Kansas,(13) Cal Baptist,0.6169,Kansas
+Round of 64,(6) Louisville,(11) South Florida,0.8279,Louisville
+Round of 64,(3) Michigan St.,(14) North Dakota St.,0.9111,Michigan St.
+Round of 64,(7) UCLA,(10) UCF,0.7444,UCLA
+Round of 64,(2) Connecticut,(15) Furman,0.8779,Connecticut
+Round of 64,(1) Florida,(16) Lehigh,0.9653,Florida
+Round of 64,(8) Clemson,(9) Iowa,0.6263,Clemson
+Round of 64,(5) Vanderbilt,(12) McNeese St.,0.4217,McNeese St.
+Round of 64,(4) Nebraska,(13) Troy,0.3221,Troy
+Round of 64,(6) North Carolina,(11) VCU,0.8994,North Carolina
+Round of 64,(3) Illinois,(14) Penn,0.982,Illinois
+Round of 64,(7) Saint Mary's,(10) Texas A&M,0.4124,Texas A&M
+Round of 64,(2) Houston,(15) Idaho,0.7515,Houston
+Round of 64,(1) Arizona,(16) LIU Brooklyn,0.9688,Arizona
+Round of 64,(8) Villanova,(9) Utah St.,0.9183,Villanova
+Round of 64,(5) Wisconsin,(12) High Point,0.9531,Wisconsin
+Round of 64,(4) Arkansas,(13) Hawaii,0.6269,Arkansas
+Round of 64,(6) BYU,(11) North Carolina St.,0.2496,North Carolina St.
+Round of 64,(3) Gonzaga,(14) Kennesaw St.,0.9827,Gonzaga
+Round of 64,(7) Miami FL,(10) Missouri,0.7619,Miami FL
+Round of 64,(2) Purdue,(15) Queens,0.5069,Purdue
+Round of 64,(1) Michigan,(16) Howard,0.9894,Michigan
+Round of 64,(8) Georgia,(9) Saint Louis,0.1553,Saint Louis
+Round of 64,(5) Texas Tech,(12) Akron,0.9792,Texas Tech
+Round of 64,(4) Alabama,(13) Hofstra,0.609,Alabama
+Round of 64,(6) Tennessee,(11) SMU,0.9707,Tennessee
+Round of 32,(1) Duke,(8) Ohio St.,0.8558,Duke
+Round of 32,(5) St. John's,(4) Kansas,0.1593,Kansas
+Round of 32,(6) Louisville,(3) Michigan St.,0.6264,Louisville
+Round of 32,(7) UCLA,(2) Connecticut,0.2796,Connecticut
+Round of 32,(1) Florida,(8) Clemson,0.9634,Florida
+Round of 32,(12) McNeese St.,(13) Troy,0.8698,McNeese St.
+Round of 32,(6) North Carolina,(3) Illinois,0.4577,Illinois
+Round of 32,(10) Texas A&M,(2) Houston,0.0727,Houston
+Round of 32,(1) Arizona,(8) Villanova,0.8214,Arizona
+Round of 32,(5) Wisconsin,(4) Arkansas,0.5577,Wisconsin
+Round of 32,(11) North Carolina St.,(3) Gonzaga,0.1789,Gonzaga
+Round of 32,(7) Miami FL,(2) Purdue,0.367,Purdue
+Round of 32,(1) Michigan,(9) Saint Louis,0.9707,Michigan
+Round of 32,(5) Texas Tech,(4) Alabama,0.6145,Texas Tech
+Sweet 16,(1) Duke,(4) Kansas,0.7782,Duke
+Sweet 16,(6) Louisville,(2) Connecticut,0.3961,Connecticut
+Sweet 16,(1) Florida,(12) McNeese St.,0.9692,Florida
+Sweet 16,(3) Illinois,(2) Houston,0.3314,Houston
+Sweet 16,(1) Arizona,(5) Wisconsin,0.737,Arizona
+Sweet 16,(3) Gonzaga,(2) Purdue,0.6728,Gonzaga
+Sweet 16,(1) Michigan,(5) Texas Tech,0.7927,Michigan
+Elite Eight,(1) Duke,(2) Connecticut,0.6381,Duke
+Elite Eight,(1) Florida,(2) Houston,0.6612,Florida
+Elite Eight,(1) Arizona,(3) Gonzaga,0.6109,Arizona
+Final Four,(1) Duke,(1) Florida,0.4107,Florida

@@ -1,0 +1,380 @@
+[
+  {
+    "Round": "Round of 64",
+    "Team_A": "(1) Duke",
+    "Team_B": "(16) Siena",
+    "Team_A_win_prob": 0.8747,
+    "Predicted_Winner": "Duke"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(8) Ohio St.",
+    "Team_B": "(9) TCU",
+    "Team_A_win_prob": 0.905,
+    "Predicted_Winner": "Ohio St."
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(5) St. John's",
+    "Team_B": "(12) Northern Iowa",
+    "Team_A_win_prob": 0.5036,
+    "Predicted_Winner": "St. John's"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(4) Kansas",
+    "Team_B": "(13) Cal Baptist",
+    "Team_A_win_prob": 0.6169,
+    "Predicted_Winner": "Kansas"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(6) Louisville",
+    "Team_B": "(11) South Florida",
+    "Team_A_win_prob": 0.8279,
+    "Predicted_Winner": "Louisville"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(3) Michigan St.",
+    "Team_B": "(14) North Dakota St.",
+    "Team_A_win_prob": 0.9111,
+    "Predicted_Winner": "Michigan St."
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(7) UCLA",
+    "Team_B": "(10) UCF",
+    "Team_A_win_prob": 0.7444,
+    "Predicted_Winner": "UCLA"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(2) Connecticut",
+    "Team_B": "(15) Furman",
+    "Team_A_win_prob": 0.8779,
+    "Predicted_Winner": "Connecticut"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(1) Florida",
+    "Team_B": "(16) Lehigh",
+    "Team_A_win_prob": 0.9653,
+    "Predicted_Winner": "Florida"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(8) Clemson",
+    "Team_B": "(9) Iowa",
+    "Team_A_win_prob": 0.6263,
+    "Predicted_Winner": "Clemson"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(5) Vanderbilt",
+    "Team_B": "(12) McNeese St.",
+    "Team_A_win_prob": 0.4217,
+    "Predicted_Winner": "McNeese St."
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(4) Nebraska",
+    "Team_B": "(13) Troy",
+    "Team_A_win_prob": 0.3221,
+    "Predicted_Winner": "Troy"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(6) North Carolina",
+    "Team_B": "(11) VCU",
+    "Team_A_win_prob": 0.8994,
+    "Predicted_Winner": "North Carolina"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(3) Illinois",
+    "Team_B": "(14) Penn",
+    "Team_A_win_prob": 0.982,
+    "Predicted_Winner": "Illinois"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(7) Saint Mary's",
+    "Team_B": "(10) Texas A&M",
+    "Team_A_win_prob": 0.4124,
+    "Predicted_Winner": "Texas A&M"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(2) Houston",
+    "Team_B": "(15) Idaho",
+    "Team_A_win_prob": 0.7515,
+    "Predicted_Winner": "Houston"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(1) Arizona",
+    "Team_B": "(16) LIU Brooklyn",
+    "Team_A_win_prob": 0.9688,
+    "Predicted_Winner": "Arizona"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(8) Villanova",
+    "Team_B": "(9) Utah St.",
+    "Team_A_win_prob": 0.9183,
+    "Predicted_Winner": "Villanova"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(5) Wisconsin",
+    "Team_B": "(12) High Point",
+    "Team_A_win_prob": 0.9531,
+    "Predicted_Winner": "Wisconsin"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(4) Arkansas",
+    "Team_B": "(13) Hawaii",
+    "Team_A_win_prob": 0.6269,
+    "Predicted_Winner": "Arkansas"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(6) BYU",
+    "Team_B": "(11) North Carolina St.",
+    "Team_A_win_prob": 0.2496,
+    "Predicted_Winner": "North Carolina St."
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(3) Gonzaga",
+    "Team_B": "(14) Kennesaw St.",
+    "Team_A_win_prob": 0.9827,
+    "Predicted_Winner": "Gonzaga"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(7) Miami FL",
+    "Team_B": "(10) Missouri",
+    "Team_A_win_prob": 0.7619,
+    "Predicted_Winner": "Miami FL"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(2) Purdue",
+    "Team_B": "(15) Queens",
+    "Team_A_win_prob": 0.5069,
+    "Predicted_Winner": "Purdue"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(1) Michigan",
+    "Team_B": "(16) Howard",
+    "Team_A_win_prob": 0.9894,
+    "Predicted_Winner": "Michigan"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(8) Georgia",
+    "Team_B": "(9) Saint Louis",
+    "Team_A_win_prob": 0.1553,
+    "Predicted_Winner": "Saint Louis"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(5) Texas Tech",
+    "Team_B": "(12) Akron",
+    "Team_A_win_prob": 0.9792,
+    "Predicted_Winner": "Texas Tech"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(4) Alabama",
+    "Team_B": "(13) Hofstra",
+    "Team_A_win_prob": 0.609,
+    "Predicted_Winner": "Alabama"
+  },
+  {
+    "Round": "Round of 64",
+    "Team_A": "(6) Tennessee",
+    "Team_B": "(11) SMU",
+    "Team_A_win_prob": 0.9707,
+    "Predicted_Winner": "Tennessee"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(1) Duke",
+    "Team_B": "(8) Ohio St.",
+    "Team_A_win_prob": 0.8558,
+    "Predicted_Winner": "Duke"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(5) St. John's",
+    "Team_B": "(4) Kansas",
+    "Team_A_win_prob": 0.1593,
+    "Predicted_Winner": "Kansas"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(6) Louisville",
+    "Team_B": "(3) Michigan St.",
+    "Team_A_win_prob": 0.6264,
+    "Predicted_Winner": "Louisville"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(7) UCLA",
+    "Team_B": "(2) Connecticut",
+    "Team_A_win_prob": 0.2796,
+    "Predicted_Winner": "Connecticut"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(1) Florida",
+    "Team_B": "(8) Clemson",
+    "Team_A_win_prob": 0.9634,
+    "Predicted_Winner": "Florida"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(12) McNeese St.",
+    "Team_B": "(13) Troy",
+    "Team_A_win_prob": 0.8698,
+    "Predicted_Winner": "McNeese St."
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(6) North Carolina",
+    "Team_B": "(3) Illinois",
+    "Team_A_win_prob": 0.4577,
+    "Predicted_Winner": "Illinois"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(10) Texas A&M",
+    "Team_B": "(2) Houston",
+    "Team_A_win_prob": 0.0727,
+    "Predicted_Winner": "Houston"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(1) Arizona",
+    "Team_B": "(8) Villanova",
+    "Team_A_win_prob": 0.8214,
+    "Predicted_Winner": "Arizona"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(5) Wisconsin",
+    "Team_B": "(4) Arkansas",
+    "Team_A_win_prob": 0.5577,
+    "Predicted_Winner": "Wisconsin"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(11) North Carolina St.",
+    "Team_B": "(3) Gonzaga",
+    "Team_A_win_prob": 0.1789,
+    "Predicted_Winner": "Gonzaga"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(7) Miami FL",
+    "Team_B": "(2) Purdue",
+    "Team_A_win_prob": 0.367,
+    "Predicted_Winner": "Purdue"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(1) Michigan",
+    "Team_B": "(9) Saint Louis",
+    "Team_A_win_prob": 0.9707,
+    "Predicted_Winner": "Michigan"
+  },
+  {
+    "Round": "Round of 32",
+    "Team_A": "(5) Texas Tech",
+    "Team_B": "(4) Alabama",
+    "Team_A_win_prob": 0.6145,
+    "Predicted_Winner": "Texas Tech"
+  },
+  {
+    "Round": "Sweet 16",
+    "Team_A": "(1) Duke",
+    "Team_B": "(4) Kansas",
+    "Team_A_win_prob": 0.7782,
+    "Predicted_Winner": "Duke"
+  },
+  {
+    "Round": "Sweet 16",
+    "Team_A": "(6) Louisville",
+    "Team_B": "(2) Connecticut",
+    "Team_A_win_prob": 0.3961,
+    "Predicted_Winner": "Connecticut"
+  },
+  {
+    "Round": "Sweet 16",
+    "Team_A": "(1) Florida",
+    "Team_B": "(12) McNeese St.",
+    "Team_A_win_prob": 0.9692,
+    "Predicted_Winner": "Florida"
+  },
+  {
+    "Round": "Sweet 16",
+    "Team_A": "(3) Illinois",
+    "Team_B": "(2) Houston",
+    "Team_A_win_prob": 0.3314,
+    "Predicted_Winner": "Houston"
+  },
+  {
+    "Round": "Sweet 16",
+    "Team_A": "(1) Arizona",
+    "Team_B": "(5) Wisconsin",
+    "Team_A_win_prob": 0.737,
+    "Predicted_Winner": "Arizona"
+  },
+  {
+    "Round": "Sweet 16",
+    "Team_A": "(3) Gonzaga",
+    "Team_B": "(2) Purdue",
+    "Team_A_win_prob": 0.6728,
+    "Predicted_Winner": "Gonzaga"
+  },
+  {
+    "Round": "Sweet 16",
+    "Team_A": "(1) Michigan",
+    "Team_B": "(5) Texas Tech",
+    "Team_A_win_prob": 0.7927,
+    "Predicted_Winner": "Michigan"
+  },
+  {
+    "Round": "Elite Eight",
+    "Team_A": "(1) Duke",
+    "Team_B": "(2) Connecticut",
+    "Team_A_win_prob": 0.6381,
+    "Predicted_Winner": "Duke"
+  },
+  {
+    "Round": "Elite Eight",
+    "Team_A": "(1) Florida",
+    "Team_B": "(2) Houston",
+    "Team_A_win_prob": 0.6612,
+    "Predicted_Winner": "Florida"
+  },
+  {
+    "Round": "Elite Eight",
+    "Team_A": "(1) Arizona",
+    "Team_B": "(3) Gonzaga",
+    "Team_A_win_prob": 0.6109,
+    "Predicted_Winner": "Arizona"
+  },
+  {
+    "Round": "Final Four",
+    "Team_A": "(1) Duke",
+    "Team_B": "(1) Florida",
+    "Team_A_win_prob": 0.4107,
+    "Predicted_Winner": "Florida"
+  }
+]

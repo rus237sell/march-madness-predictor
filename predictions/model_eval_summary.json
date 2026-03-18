@@ -1,0 +1,98 @@
+{
+  "logistic": {
+    "cv_logloss": 0.4345,
+    "cv_std": 0.0155,
+    "eval_results": {
+      "2019": {
+        "log_loss": 0.4006,
+        "accuracy": 0.7778,
+        "brier_score": 0.1309,
+        "n_games": 504
+      },
+      "2022": {
+        "log_loss": 0.4105,
+        "accuracy": 0.8254,
+        "brier_score": 0.1289,
+        "n_games": 504
+      },
+      "2023": {
+        "log_loss": 0.423,
+        "accuracy": 0.746,
+        "brier_score": 0.1409,
+        "n_games": 504
+      }
+    }
+  },
+  "ridge": {
+    "cv_logloss": 0.4358,
+    "cv_std": 0.0147,
+    "eval_results": {
+      "2019": {
+        "log_loss": 0.4018,
+        "accuracy": 0.7937,
+        "brier_score": 0.1301,
+        "n_games": 504
+      },
+      "2022": {
+        "log_loss": 0.4087,
+        "accuracy": 0.7937,
+        "brier_score": 0.1293,
+        "n_games": 504
+      },
+      "2023": {
+        "log_loss": 0.4273,
+        "accuracy": 0.7619,
+        "brier_score": 0.1398,
+        "n_games": 504
+      }
+    }
+  },
+  "random_forest": {
+    "cv_logloss": 0.3348,
+    "cv_std": 0.0071,
+    "eval_results": {
+      "2019": {
+        "log_loss": 0.2448,
+        "accuracy": 0.9603,
+        "brier_score": 0.064,
+        "n_games": 504
+      },
+      "2022": {
+        "log_loss": 0.2486,
+        "accuracy": 0.9921,
+        "brier_score": 0.0624,
+        "n_games": 504
+      },
+      "2023": {
+        "log_loss": 0.2585,
+        "accuracy": 0.9841,
+        "brier_score": 0.0653,
+        "n_games": 504
+      }
+    }
+  },
+  "lgbm": {
+    "cv_logloss": 0.1616,
+    "cv_std": 0.0167,
+    "eval_results": {
+      "2019": {
+        "log_loss": 0.0549,
+        "accuracy": 1.0,
+        "brier_score": 0.0061,
+        "n_games": 504
+      },
+      "2022": {
+        "log_loss": 0.0412,
+        "accuracy": 1.0,
+        "brier_score": 0.0033,
+        "n_games": 504
+      },
+      "2023": {
+        "log_loss": 0.0555,
+        "accuracy": 1.0,
+        "brier_score": 0.0057,
+        "n_games": 504
+      }
+    }
+  }
+}
